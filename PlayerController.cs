@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     // movement
     [Header("Movement")]
     private float horizontal;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool doubleJump;
     public float walkSpeed = 7f;
     public float runSpeed = 10f;
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         //move control
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        Flip();
 
         //jump
         if (Input.GetButtonDown("Jump") && IsGrounded())
