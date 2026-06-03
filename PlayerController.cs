@@ -50,11 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isRunning && IsGrounded())
-            rb.linearVelocity = new Vector2(horizontal * runSpeed, rb.linearVelocity.y);
-        else
-            rb.linearVelocity = new Vector2(horizontal * walkSpeed, rb.linearVelocity.y);
-    
+        float dx = isRunning && IsGrounded() ? horizontal * runSpeed : horizontal * walkSpeed;
+        rb.linearVelocity = new Vector2(dx, rb.linearVelocity.y);
     }
 
     private bool IsGrounded()
