@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     public bool isFacingRight = true;
     private bool doubleJump;
+    private bool isRunning;
     public float walkSpeed = 7f;
     public float runSpeed = 10f;
     public float jumpingPower = 16f;
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
 
+        isRunning = Input.GetButton("Run");
+
         //can double jump
         if (IsGrounded())
             doubleJump = true;
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetButton("Run") && IsGrounded())
+        if (isRunning && IsGrounded())
             rb.linearVelocity = new Vector2(horizontal * runSpeed, rb.linearVelocity.y);
         else
             rb.linearVelocity = new Vector2(horizontal * walkSpeed, rb.linearVelocity.y);
