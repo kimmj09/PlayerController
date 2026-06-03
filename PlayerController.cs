@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float dx = isRunning && IsGrounded() ? horizontal * runSpeed : horizontal * walkSpeed;
+        float dx = horizontal * (isRunning && IsGrounded() ? runSpeed : walkSpeed);
         rb.linearVelocity = new Vector2(dx, rb.linearVelocity.y);
     }
 
